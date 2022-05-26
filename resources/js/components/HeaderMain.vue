@@ -1,6 +1,6 @@
 <template>
   <div>
-      Header main
+      <h1>Componente HeaderMain collegato ad App.vue</h1>
   </div>
 </template>
 
