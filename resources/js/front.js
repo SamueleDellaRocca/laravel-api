@@ -6,8 +6,8 @@
 // const { default: Axios } = require('axios');
 import './bootstrap';
 
-window.axios = require('axios');
 window.Vue = require('vue');
+window.axios = require('axios');
 
 /**
  * The following block of code may be used to automatically register your
@@ -28,7 +28,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import App from 'views/App.vue';
+import App from './views/App.vue';
 
 const app = new Vue({
     el: '#app',

@@ -8,6 +8,8 @@
 <script>
 import HeaderMain from '../components/HeaderMain.vue';
 import ContainerPosts from '../components/ContainerPosts.vue';
+
+
 export default {
 name: 'App',
 components : {

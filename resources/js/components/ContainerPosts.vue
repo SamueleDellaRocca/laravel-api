@@ -1,6 +1,6 @@
 <template>
   <div>
-      Container 
+      ContainerPosts 
   </div>
 </template>
 
