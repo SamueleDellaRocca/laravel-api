@@ -28613,12 +28613,12 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container-fluid" }, [
     _c(
       "div",
-      { staticClass: "row g-4 px-5" },
+      { staticClass: "row justify-content-center row-cols-4" },
       _vm._l(_vm.posts, function (post) {
-        return _c("div", { key: post.id, staticClass: "col-3" }, [
+        return _c("div", { key: post.id, staticClass: "col mb-3" }, [
           _c("div", { staticClass: "card h-100" }, [
             _c("div", { staticClass: "card-body d-flex flex-column" }, [
               _c("h5", { staticClass: "card-title" }, [
@@ -28646,14 +28646,14 @@ var render = function () {
       0
     ),
     _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "row m-0" }, [
       _c("div", { staticClass: "text-center" }, [
         _vm._v(
-          "\n            Page " +
+          "\n                Page " +
             _vm._s(_vm.nCurrentPage) +
             " of " +
             _vm._s(_vm.nLastPage) +
-            "\n        "
+            "\n            "
         ),
       ]),
       _vm._v(" "),
@@ -28786,7 +28786,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
+    return _c("div", { staticClass: "text-center" }, [
       _c("h1", [_vm._v("Componente HeaderMain collegato ad App.vue")]),
     ])
   },

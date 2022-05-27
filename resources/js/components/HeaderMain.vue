@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-center">
       <h1>Componente HeaderMain collegato ad App.vue</h1>
   </div>
 </template>
