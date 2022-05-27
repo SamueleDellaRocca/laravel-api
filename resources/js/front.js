@@ -5,7 +5,6 @@
  */
 // const { default: Axios } = require('axios');
 import './bootstrap';
-
 window.Vue = require('vue');
 window.Axios = require('axios');
 
@@ -27,12 +26,45 @@ window.Axios = require('axios');
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
+import VueRouter from 'vue-router';
 import App from './views/App.vue';
+import Vue from 'vue';
+
+import PageHome from './pages/PageHome.vue';
+import PageAbout from './pages/PageAbout.vue';
+import PostIndex from './pages/PostIndex.vue';
+import PostShow from './pages/PostShow.vue';
+
+Vue.use(VueRouter);
+
+const router = new VueRouter({
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: PageHome,
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: PageAbout,
+        },
+        {
+            path: '/blog',
+            name: 'postIndex',
+            component: PostIndex,
+        },
+        {
+            path: '/blog/:slug',
+            name: 'postshow',
+            component: PostShow,
+        },
+    ],
+});
+
 
 const app = new Vue({
     el: '#app',
     render: h => h(App),
+    router,
 });
-
-
