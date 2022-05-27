@@ -17,8 +17,8 @@
                 <div class="text-center">
                     Page {{ nCurrentPage }} of {{ nLastPage }}
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
+                <nav aria-label="Page navigation example gap-1">
+                    <ul class="pagination justify-content-center gap-3">
                         <li class="page-item" :class="{disabled: nCurrentPage == 1}" @click="getData(firstPageUrl)">
                             <a class="page-link">First</a>
                         </li>

@@ -5259,8 +5259,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PageHome'
+  name: 'PageHome',
+  data: function data() {
+    return {
+      posts: [],
+      baseApiUrl: 'http://localhost:8000/api/posts/?home'
+    };
+  },
+  created: function created() {
+    this.getData(this.baseApiUrl);
+  },
+  methods: {
+    getData: function getData(url) {
+      var _this = this;
+
+      if (url) {
+        Axios.get(url).then(function (res) {
+          _this.posts = res.data.response.data;
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -5382,8 +5414,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'PostShow'
+  name: 'PostShow',
+  props: ['slug'],
+  data: function data() {
+    return {
+      is404: false,
+      post: null,
+      baseApiUrl: 'http://localhost:8000/api/posts'
+    };
+  },
+  created: function created() {
+    this.getData(this.baseApiUrl + '/' + this.slug);
+  },
+  methods: {
+    getData: function getData(url) {
+      var _this = this;
+
+      if (url) {
+        Axios.get(url).then(function (res) {
+          if (res.data.success) {
+            _this.post = res.data.response.data;
+          } else {
+            //this.$router.replace({name: 'page404'}); //TODO: fare in modo che non modifica l'url (Risolto ma credo si puo' fare di meglio)
+            _this.is404 = true;
+          }
+        });
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -29001,14 +29065,19 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "text-center d-flex justify-content-center gap-4" },
+    { staticClass: "text-center d-flex justify-content-center gap-5" },
     [
       _c(
         "h1",
         [
-          _c("router-link", { attrs: { to: { name: "home" } } }, [
-            _vm._v("Home"),
-          ]),
+          _c(
+            "router-link",
+            {
+              staticClass: "text-decoration-none",
+              attrs: { to: { name: "home" } },
+            },
+            [_vm._v("Home")]
+          ),
         ],
         1
       ),
@@ -29016,9 +29085,14 @@ var render = function () {
       _c(
         "h1",
         [
-          _c("router-link", { attrs: { to: { name: "about" } } }, [
-            _vm._v("About"),
-          ]),
+          _c(
+            "router-link",
+            {
+              staticClass: "text-decoration-none",
+              attrs: { to: { name: "about" } },
+            },
+            [_vm._v("About")]
+          ),
         ],
         1
       ),
@@ -29026,9 +29100,14 @@ var render = function () {
       _c(
         "h1",
         [
-          _c("router-link", { attrs: { to: { name: "postIndex" } } }, [
-            _vm._v("Blog"),
-          ]),
+          _c(
+            "router-link",
+            {
+              staticClass: "text-decoration-none",
+              attrs: { to: { name: "postIndex" } },
+            },
+            [_vm._v("Blog")]
+          ),
         ],
         1
       ),
@@ -29088,16 +29167,47 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("h1", { staticClass: "text-center" }, [
+        _vm._v("I Quattro post più in voga al momento"),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row justify-content-center row-cols-2" },
+        _vm._l(_vm.posts, function (post) {
+          return _c("div", { key: post.id, staticClass: "col-5 mb-3" }, [
+            _c("div", { staticClass: "card h-100" }, [
+              _c("div", { staticClass: "card-body d-flex flex-column" }, [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(post.title)),
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(
+                    "Some quick example text to build on the card title and make up the bulk of the card's content."
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-primary mt-auto",
+                    attrs: { href: "/posts/" + post.slug },
+                  },
+                  [_vm._v("Read more")]
+                ),
+              ]),
+            ]),
+          ])
+        }),
+        0
+      ),
+    ]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("\n        Home\n    ")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -29163,8 +29273,8 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-        _c("ul", { staticClass: "pagination justify-content-center" }, [
+      _c("nav", { attrs: { "aria-label": "Page navigation example gap-1" } }, [
+        _c("ul", { staticClass: "pagination justify-content-center gap-3" }, [
           _c(
             "li",
             {
@@ -29285,16 +29395,35 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("div", [
+      _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+      _vm._v(" "),
+      _c("b", [
+        _vm._v("From " + _vm._s(_vm.post.user.name)),
+        _vm.post.category
+          ? _c("span", [
+              _vm._v(" in category " + _vm._s(_vm.post.category.name)),
+            ])
+          : _vm._e(),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "tags" },
+        _vm._l(_vm.post.tags, function (tag) {
+          return _c("span", { key: tag.id, staticClass: "tag" }, [
+            _vm._v(_vm._s(tag.name)),
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("p", [_vm._v(_vm._s(_vm.post.content))]),
+    ]),
+  ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("\n        Postshow\n    ")])])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -44955,6 +45084,7 @@ window.Axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  // mode: 'history',
   routes: [{
     path: '/',
     name: 'home',
