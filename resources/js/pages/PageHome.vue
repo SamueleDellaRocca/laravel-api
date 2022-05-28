@@ -9,7 +9,7 @@
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ post.title }}</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a :href="'/posts/' + post.slug" class="btn btn-primary mt-auto">Read more</a>
+                            <router-link :to="{name: 'postShow', params: {slug: post.slug}}" class="btn btn-primary mt-auto">Read more</router-link>
                         </div>
                     </div>
                 </div>

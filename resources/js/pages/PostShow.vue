@@ -17,13 +17,13 @@ name: 'PostShow',
 props: ['slug'],
  data() {
         return {
-            is404: false,
             post: null,
             baseApiUrl: 'http://localhost:8000/api/posts',
         }
     },
     created() {
         this.getData(this.baseApiUrl + '/' + this.slug);
+        console.log(this.slug);
     },
     methods: {
         getData(url) {
@@ -32,9 +32,6 @@ props: ['slug'],
                 .then(res => {
                     if (res.data.success) {
                         this.post =  res.data.response.data;
-                    } else {
-                        //this.$router.replace({name: 'page404'}); //TODO: fare in modo che non modifica l'url (Risolto ma credo si puo' fare di meglio)
-                        this.is404 = true;
                     }
                 });
             }

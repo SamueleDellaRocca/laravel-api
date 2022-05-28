@@ -5236,6 +5236,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PageAbout'
 });
@@ -5389,6 +5392,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.nLastPage = res.data.response.last_page;
           _this.nNewPage = null;
           console.log(res.data.response);
+          console.log(_this.posts[0].slug);
         });
       }
     }
@@ -5424,13 +5428,13 @@ __webpack_require__.r(__webpack_exports__);
   props: ['slug'],
   data: function data() {
     return {
-      is404: false,
       post: null,
       baseApiUrl: 'http://localhost:8000/api/posts'
     };
   },
   created: function created() {
     this.getData(this.baseApiUrl + '/' + this.slug);
+    console.log(this.slug);
   },
   methods: {
     getData: function getData(url) {
@@ -5440,9 +5444,6 @@ __webpack_require__.r(__webpack_exports__);
         Axios.get(url).then(function (res) {
           if (res.data.success) {
             _this.post = res.data.response.data;
-          } else {
-            //this.$router.replace({name: 'page404'}); //TODO: fare in modo che non modifica l'url (Risolto ma credo si puo' fare di meglio)
-            _this.is404 = true;
           }
         });
       }
@@ -29143,7 +29144,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [_c("h1", [_vm._v("\n        About\n    ")])])
+    return _c("div", [
+      _c("h1", { staticClass: "text-center" }, [
+        _vm._v("\n        About us\n    "),
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "\n      Siamo gli studenti di boolean, classe #56, a detta dei nostri tudor siamo scarsi veramente come programmati.\n    "
+        ),
+      ]),
+    ])
   },
 ]
 render._withStripped = true
@@ -29179,26 +29190,33 @@ var render = function () {
         _vm._l(_vm.posts, function (post) {
           return _c("div", { key: post.id, staticClass: "col-5 mb-3" }, [
             _c("div", { staticClass: "card h-100" }, [
-              _c("div", { staticClass: "card-body d-flex flex-column" }, [
-                _c("h5", { staticClass: "card-title" }, [
-                  _vm._v(_vm._s(post.title)),
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "card-text" }, [
-                  _vm._v(
-                    "Some quick example text to build on the card title and make up the bulk of the card's content."
+              _c(
+                "div",
+                { staticClass: "card-body d-flex flex-column" },
+                [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v(_vm._s(post.title)),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "Some quick example text to build on the card title and make up the bulk of the card's content."
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "btn btn-primary mt-auto",
+                      attrs: {
+                        to: { name: "postShow", params: { slug: post.slug } },
+                      },
+                    },
+                    [_vm._v("Read more")]
                   ),
-                ]),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "btn btn-primary mt-auto",
-                    attrs: { href: "/posts/" + post.slug },
-                  },
-                  [_vm._v("Read more")]
-                ),
-              ]),
+                ],
+                1
+              ),
             ]),
           ])
         }),
@@ -29236,26 +29254,33 @@ var render = function () {
       _vm._l(_vm.posts, function (post) {
         return _c("div", { key: post.id, staticClass: "col mb-3" }, [
           _c("div", { staticClass: "card h-100" }, [
-            _c("div", { staticClass: "card-body d-flex flex-column" }, [
-              _c("h5", { staticClass: "card-title" }, [
-                _vm._v(_vm._s(post.title)),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "card-text" }, [
-                _vm._v(
-                  "Some quick example text to build on the card title and make up the bulk of the card's content."
+            _c(
+              "div",
+              { staticClass: "card-body d-flex flex-column" },
+              [
+                _c("h5", { staticClass: "card-title" }, [
+                  _vm._v(_vm._s(post.title)),
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "card-text" }, [
+                  _vm._v(
+                    "Some quick example text to build on the card title and make up the bulk of the card's content."
+                  ),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary mt-auto",
+                    attrs: {
+                      to: { name: "postShow", params: { slug: post.slug } },
+                    },
+                  },
+                  [_vm._v("Read more")]
                 ),
-              ]),
-              _vm._v(" "),
-              _c(
-                "a",
-                {
-                  staticClass: "btn btn-primary mt-auto",
-                  attrs: { href: "/posts/" + post.slug },
-                },
-                [_vm._v("Read more")]
-              ),
-            ]),
+              ],
+              1
+            ),
           ]),
         ])
       }),
@@ -29265,11 +29290,11 @@ var render = function () {
     _c("div", { staticClass: "row m-0" }, [
       _c("div", { staticClass: "text-center" }, [
         _vm._v(
-          "\n                Page " +
+          "\n            Page " +
             _vm._s(_vm.nCurrentPage) +
             " of " +
             _vm._s(_vm.nLastPage) +
-            "\n            "
+            "\n        "
         ),
       ]),
       _vm._v(" "),
@@ -45099,7 +45124,7 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
     component: _pages_PostIndex_vue__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/blog/:slug',
-    name: 'postshow',
+    name: 'postShow',
     component: _pages_PostShow_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
   }]
 });

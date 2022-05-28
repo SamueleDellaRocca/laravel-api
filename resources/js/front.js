@@ -57,7 +57,7 @@ const router = new VueRouter({
         },
         {
             path: '/blog/:slug',
-            name: 'postshow',
+            name: 'postShow',
             component: PostShow,
         },
     ],
