@@ -45125,7 +45125,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   }, {
     path: '/blog/:slug',
     name: 'postShow',
-    component: _pages_PostShow_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    component: _pages_PostShow_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
+    props: true
   }]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_3___default.a({
