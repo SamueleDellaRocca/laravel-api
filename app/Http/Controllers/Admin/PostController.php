@@ -10,6 +10,8 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -124,8 +126,13 @@ class PostController extends Controller
     {
         $request->validate($this->getValidators(null));
 
-        $formData = $request->all() + [
-            'user_id' => Auth::user()->id
+        $data = $request->all();
+
+        $img_path = Storage::put('uploads', $data['post_image']);
+
+        $formData = $data + [
+            'user_id' => Auth::user()->id,
+            'post_image' => $img_path,
         ];
         
         $post = Post::create($formData);

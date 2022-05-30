@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->text('content');
             $table->string('slug',100)->unique();
+            $table->string('post_image')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')
