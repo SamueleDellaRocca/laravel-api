@@ -5286,7 +5286,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'PageContact',
   data: function data() {
     return {
-      apiUrl: "/api/v1/contact",
+      apiUrl: "api/contact",
       name: '',
       email: '',
       message: '',
@@ -29268,7 +29268,7 @@ var render = function () {
         _c(
           "form",
           {
-            attrs: { action: "api/v1/contact", method: "post" },
+            attrs: { action: "api/contact", method: "post" },
             on: {
               submit: function ($event) {
                 $event.preventDefault()

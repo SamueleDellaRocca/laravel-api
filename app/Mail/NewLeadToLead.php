@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendNewMail extends Mailable
+class NewLeadToLead extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -30,6 +30,9 @@ class SendNewMail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.contact');
+        return $this->view('mails.NewLeadToLead', [
+            'lead' => $this->lead,
+        ]);
+
     }
 }

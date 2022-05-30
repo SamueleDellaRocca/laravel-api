@@ -6,7 +6,7 @@
                 <div v-if="statusMessage" class="alert alert-success" role="alert">
                     {{ statusMessage }}
                 </div>
-                <form @submit.prevent="sendMessage" action="api/v1/contact" method="post">
+                <form @submit.prevent="sendMessage" action="api/contact" method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" id="name" name="name" v-model="name">
@@ -31,7 +31,7 @@ export default {
     name: 'PageContact',
     data() {
         return {
-            apiUrl: "/api/v1/contact",
+            apiUrl: "api/contact",
             name: '',
             email: '',
             message: '',
