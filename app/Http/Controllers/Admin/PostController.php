@@ -130,10 +130,11 @@ class PostController extends Controller
 
         $img_path = Storage::put('uploads', $data['post_image']);
 
-        $formData = $data + [
+
+        $formData = [
             'user_id' => Auth::user()->id,
             'post_image' => $img_path,
-        ];
+        ] + $data;
         
         $post = Post::create($formData);
         $post->tags()->attach($formData['tags']);
