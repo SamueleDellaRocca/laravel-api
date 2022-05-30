@@ -6,7 +6,7 @@
 
 @section('content')
     <div class="container">
-        <form action="{{ route('admin.posts.update', $post->slug) }}" method="post">
+        <form action="{{ route('admin.posts.update', $post->slug) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -45,6 +45,16 @@
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
+
+            <div class="mb-3">
+                <label for="post_image" class="form-label">Post image</label>
+                <input class="form-control" type="file" id="post_image" name="post_image" accept="image/*">
+                @error('post_image')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <img src="{{ asset('storage/' . $post->post_image) }}" alt="" class="img-fluid">
 
 
             <div class="mb-3">

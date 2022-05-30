@@ -19,7 +19,7 @@
                     @endforeach
                 </h5>
 
-                <img src="{{ asset('storage/' . $post->post_image) }}" alt="{{ $post->title }}">
+                <img src="{{ asset('storage/' . $post->post_image) }}" alt="{{ $post->title }}" class="img-fluid">
 
                 <p>{{ $post->content }}</p>
                 <div class="d-flex justify-content-end w-100 mb-3 gap-3">

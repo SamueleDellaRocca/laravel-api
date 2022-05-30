@@ -185,9 +185,20 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate($this->getValidators($post));
-
         $formData = $request->all();
-        $post->tags()->sync($formData['tags']);
+
+        if (array_key_exists('post_image', $formData)) {
+            Storage::delete($post, $post->post_image);
+            $img_path = Storage::put('uploads', $formData['post_image']);
+
+            $formData = [
+                'post_image' => $img_path,
+            ] + $formData;
+        }
+
+        if (array_key_exists('tags', $formData)) {
+            $post->tags()->sync($formData['tags']);
+        }
         $post->update($formData);
         return redirect()->route('admin.posts.show', $post->slug);
     }
