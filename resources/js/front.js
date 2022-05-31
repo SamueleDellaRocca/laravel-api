@@ -39,7 +39,7 @@ import PageContact from './pages/PageContact.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    // mode: 'history',
+    mode: 'history',
     routes: [
         {
             path: '/',

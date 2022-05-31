@@ -5210,6 +5210,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'HeaderMain',
   data: function data() {
@@ -29180,6 +29181,21 @@ var render = function () {
         ],
         1
       ),
+      _vm._v(" "),
+      _c(
+        "h1",
+        [
+          _c(
+            "router-link",
+            {
+              staticClass: "text-decoration-none",
+              attrs: { to: { name: "contact" } },
+            },
+            [_vm._v("Contact Us")]
+          ),
+        ],
+        1
+      ),
     ]
   )
 }
@@ -45334,7 +45350,7 @@ window.Axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 
 vue__WEBPACK_IMPORTED_MODULE_3___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  // mode: 'history',
+  mode: 'history',
   routes: [{
     path: '/',
     name: 'home',

@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('homepage');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('homepage');
 
 Auth::routes();
 
@@ -35,6 +35,6 @@ Route::middleware('auth')
     });
 
 
-// Route::get("{any?}", function() {
-//     return view("guests.home");
-//     })->where("any", ".*");
+Route::get("{any?}", function() {
+    return view("guests.home");
+    })->where("any", ".*");
