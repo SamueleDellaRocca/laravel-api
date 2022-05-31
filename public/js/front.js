@@ -5240,6 +5240,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'PageAbout'
 });
@@ -29229,14 +29232,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", [
-      _c("h1", { staticClass: "text-center" }, [
-        _vm._v("\n        About us\n    "),
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          "\n      Siamo gli studenti di boolean, classe #56, a detta dei nostri tudor siamo scarsi veramente come programmati.\n    "
-        ),
+      _c("div", { staticClass: "container" }, [
+        _c("h1", { staticClass: "text-center" }, [
+          _vm._v("\n        About us\n    "),
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            "\n      Siamo gli studenti di boolean, classe #56, a detta dei nostri tudor siamo scarsi veramente come programmatori.\n    "
+          ),
+        ]),
       ]),
     ])
   },
@@ -29679,8 +29684,16 @@ var render = function () {
       ),
       _vm._v(" "),
       _c("img", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.post.post_image !== "http://localhost:8000/storage",
+            expression: "post.post_image !== 'http://localhost:8000/storage' ",
+          },
+        ],
         staticClass: "img-fluid",
-        attrs: { src: _vm.post.img_url, alt: _vm.post.title },
+        attrs: { src: _vm.post.post_image, alt: _vm.post.title },
       }),
       _vm._v(" "),
       _c("p", [_vm._v(_vm._s(_vm.post.content))]),

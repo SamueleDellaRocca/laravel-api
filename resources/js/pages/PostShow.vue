@@ -6,7 +6,7 @@
             <div class="tags">
                 <span v-for="tag in post.tags" :key="tag.id" class="tag">{{ tag.name }}-</span>
             </div>
-            <img :src="post.img_url" :alt="post.title" class="img-fluid">
+            <img v-show="post.post_image !== 'http://localhost:8000/storage' " :src="post.post_image" :alt="post.title" class="img-fluid">
             <p>{{ post.content }}</p>
         </div>
   </div>
