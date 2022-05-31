@@ -20,7 +20,7 @@ class NewLeadToAdmin extends Mailable
      */
     public function __construct($lead)
     {
-        $this->$lead = $lead;
+        $this->lead = $lead;
     }
 
     /**

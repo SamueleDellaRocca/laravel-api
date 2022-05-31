@@ -41,9 +41,11 @@ class LeadController extends Controller
     public function store(Request $request)
     {
         $lead = Lead::create($request->all());
+        // dd($lead);
 
         Mail::to('admin.samuele@boolpress.com')->send(new NewLeadToAdmin($lead));
         Mail::to($lead->email)->send(new NewLeadToLead($lead));
+
 
         return response()->json([
             'statusMessage' => 'Tutto OK',
